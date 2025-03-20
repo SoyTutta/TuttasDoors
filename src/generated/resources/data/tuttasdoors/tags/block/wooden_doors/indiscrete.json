@@ -1,0 +1,15 @@
+{
+  "values": [
+    "tuttasdoors:oak_discrete_door",
+    "tuttasdoors:spruce_indiscrete_door",
+    "tuttasdoors:birch_indiscrete_door",
+    "tuttasdoors:jungle_discrete_door",
+    "minecraft:acacia_door",
+    "tuttasdoors:dark_oak_indiscrete_door",
+    "tuttasdoors:mangrove_indiscrete_door",
+    "tuttasdoors:cherry_indiscrete_door",
+    "tuttasdoors:bamboo_indiscrete_door",
+    "tuttasdoors:crimson_indiscrete_door",
+    "tuttasdoors:warped_indiscrete_door"
+  ]
+}
