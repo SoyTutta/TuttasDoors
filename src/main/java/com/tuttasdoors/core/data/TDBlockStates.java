@@ -1,11 +1,14 @@
 package com.tuttasdoors.core.data;
 
 import com.tuttasdoors.TuttasDoors;
+import com.tuttasdoors.blocks.PetDoorBlock;
 import com.tuttasdoors.registry.TDBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.Half;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -18,7 +21,7 @@ public class TDBlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        registerDoor(TDBlocks.OAK_DISCRETE_DOOR, "discrete_door/oak_door");
+        registerDoor(TDBlocks.OAK_DISCRETE_DOOR,   "discrete_door/oak_door");
         registerDoor(TDBlocks.JUNGLE_DISCRETE_DOOR, "discrete_door/jungle_door");
         registerDoor(TDBlocks.ACACIA_DISCRETE_DOOR, "discrete_door/acacia_door");
         registerDoor(TDBlocks.CHERRY_DISCRETE_DOOR, "discrete_door/cherry_door");
@@ -54,6 +57,18 @@ public class TDBlockStates extends BlockStateProvider {
         registerTransitDoor(TDBlocks.BAMBOO_TRANSIT_DOOR, "transit_door/bamboo_door");
         registerTransitDoor(TDBlocks.CRIMSON_TRANSIT_DOOR, "transit_door/crimson_door");
         registerTransitDoor(TDBlocks.WARPED_TRANSIT_DOOR, "transit_door/warped_door");
+
+        registerPetDoor(TDBlocks.OAK_PET_DOOR, "pet_door/oak_door");
+        registerPetDoor(TDBlocks.SPRUCE_PET_DOOR, "pet_door/spruce_door");
+        registerPetDoor(TDBlocks.BIRCH_PET_DOOR, "pet_door/birch_door");
+        registerPetDoor(TDBlocks.JUNGLE_PET_DOOR, "pet_door/jungle_door");
+        registerPetDoor(TDBlocks.ACACIA_PET_DOOR, "pet_door/acacia_door");
+        registerPetDoor(TDBlocks.DARK_OAK_PET_DOOR, "pet_door/dark_oak_door");
+        registerPetDoor(TDBlocks.MANGROVE_PET_DOOR, "pet_door/mangrove_door");
+        registerPetDoor(TDBlocks.CHERRY_PET_DOOR, "pet_door/cherry_door");
+        registerPetDoor(TDBlocks.BAMBOO_PET_DOOR, "pet_door/bamboo_door");
+        registerPetDoor(TDBlocks.CRIMSON_PET_DOOR, "pet_door/crimson_door");
+        registerPetDoor(TDBlocks.WARPED_PET_DOOR, "pet_door/warped_door");
     }
 
     private void registerDoor(Supplier<Block> blockSupplier, String texturePath) {
@@ -147,6 +162,84 @@ public class TDBlockStates extends BlockStateProvider {
                 .texture("door", isTop ? top : bottom)
                 .texture("extra", isTop ? extraTop : extraBottom);
     }
+
+    private void registerPetDoor(Supplier<Block> blockSupplier, String texturePath) {
+        petDoorBlockWithRenderType(
+                (PetDoorBlock) blockSupplier.get(),
+                resourceBlock(texturePath),
+                vanillaDoorTexture(texturePath),
+                "cutout"
+        );
+    }
+
+    private void petDoorBlockWithRenderType(PetDoorBlock block, ResourceLocation customTexture, ResourceLocation vanillaTexture, String renderType) {
+        this.petDoorBlockInternalWithRenderType(block, this.key(block).toString(), customTexture, vanillaTexture, ResourceLocation.tryParse(renderType));
+    }
+
+    private void petDoorBlockInternalWithRenderType(PetDoorBlock block, String baseName, ResourceLocation customTexture, ResourceLocation vanillaTexture, ResourceLocation renderType) {
+        ModelFile bottom = this.petDoorBottom(baseName + "_bottom", customTexture, vanillaTexture).renderType(renderType);
+        ModelFile bottomOpen = this.petDoorBottomOpen(baseName + "_bottom_open", customTexture, vanillaTexture).renderType(renderType);
+        ModelFile top = this.petDoorTop(baseName + "_top", customTexture, vanillaTexture).renderType(renderType);
+        ModelFile topOpen = this.petDoorTopOpen(baseName + "_top_open", customTexture, vanillaTexture).renderType(renderType);
+
+        this.petDoorBlock(block, bottom, bottomOpen, top, topOpen);
+    }
+
+    public BlockModelBuilder petDoorBottom(String name, ResourceLocation customTexture, ResourceLocation vanillaTexture) {
+        return this.models().withExistingParent(name, "tuttasdoors:block/pet_door_bottom")
+                .texture("door", customTexture)
+                .texture("extra", vanillaTexture);
+    }
+
+    public BlockModelBuilder petDoorBottomOpen(String name, ResourceLocation customTexture, ResourceLocation vanillaTexture) {
+        return this.models().withExistingParent(name, "tuttasdoors:block/pet_door_bottom_open")
+                .texture("door", customTexture)
+                .texture("extra", vanillaTexture);
+    }
+
+    public BlockModelBuilder petDoorTop(String name, ResourceLocation customTexture, ResourceLocation vanillaTexture) {
+        return this.models().withExistingParent(name, "tuttasdoors:block/pet_door_top")
+                .texture("door", customTexture)
+                .texture("extra", vanillaTexture);
+    }
+
+    public BlockModelBuilder petDoorTopOpen(String name, ResourceLocation customTexture, ResourceLocation vanillaTexture) {
+        return this.models().withExistingParent(name, "tuttasdoors:block/pet_door_top_open")
+                .texture("door", customTexture)
+                .texture("extra", vanillaTexture);
+    }
+
+    public void petDoorBlock(PetDoorBlock block, ModelFile bottom, ModelFile bottomOpen, ModelFile top, ModelFile topOpen) {
+        this.getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(PetDoorBlock.FACING);
+            boolean isOpen = state.getValue(PetDoorBlock.OPEN);
+            Half half = state.getValue(PetDoorBlock.HALF);
+
+            int yRot = (int) facing.toYRot();
+
+            ModelFile selectedModel;
+
+            if (half == Half.BOTTOM) {
+                if (isOpen) {
+                    selectedModel = bottomOpen;
+                } else {
+                    selectedModel = bottom;
+                }
+            } else {
+                if (isOpen) {
+                    selectedModel = topOpen;
+                } else {
+                    selectedModel = top;
+                }
+            }
+
+            return ConfiguredModel.builder()
+                    .modelFile(selectedModel)
+                    .rotationY(yRot)
+                    .build();
+        }, TrapDoorBlock.POWERED, TrapDoorBlock.WATERLOGGED);
+    }
+
     private ResourceLocation key(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
     }

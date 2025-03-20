@@ -7,7 +7,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -37,67 +36,67 @@ public class TDItemsModels extends ItemModelProvider
                 TDItems.OAK_DISCRETE_DOOR.get(),
                 TDItems.OAK_INDISCRETE_DOOR.get(),
                 TDItems.OAK_TRANSIT_DOOR.get(),
-                TDItems.OAK_TRANSIT_GATE.get(),
+        ///        TDItems.OAK_TRANSIT_GATE.get(),
                 TDItems.OAK_PET_DOOR.get(),
 
                 TDItems.SPRUCE_DOOR.get(),
                 TDItems.SPRUCE_INDISCRETE_DOOR.get(),
                 TDItems.SPRUCE_TRANSIT_DOOR.get(),
-                TDItems.SPRUCE_TRANSIT_GATE.get(),
+        ///        TDItems.SPRUCE_TRANSIT_GATE.get(),
                 TDItems.SPRUCE_PET_DOOR.get(),
 
                 TDItems.BIRCH_DOOR.get(),
                 TDItems.BIRCH_INDISCRETE_DOOR.get(),
                 TDItems.BIRCH_TRANSIT_DOOR.get(),
-                TDItems.BIRCH_TRANSIT_GATE.get(),
+        ///        TDItems.BIRCH_TRANSIT_GATE.get(),
                 TDItems.BIRCH_PET_DOOR.get(),
 
                 TDItems.JUNGLE_DISCRETE_DOOR.get(),
                 TDItems.JUNGLE_INDISCRETE_DOOR.get(),
                 TDItems.JUNGLE_TRANSIT_DOOR.get(),
-                TDItems.JUNGLE_TRANSIT_GATE.get(),
+        ///        TDItems.JUNGLE_TRANSIT_GATE.get(),
                 TDItems.JUNGLE_PET_DOOR.get(),
 
                 TDItems.ACACIA_DISCRETE_DOOR.get(),
                 TDItems.ACACIA_DOOR.get(),
                 TDItems.ACACIA_TRANSIT_DOOR.get(),
-                TDItems.ACACIA_TRANSIT_GATE.get(),
+        ///        TDItems.ACACIA_TRANSIT_GATE.get(),
                 TDItems.ACACIA_PET_DOOR.get(),
 
                 TDItems.DARK_OAK_DOOR.get(),
                 TDItems.DARK_OAK_INDISCRETE_DOOR.get(),
                 TDItems.DARK_OAK_TRANSIT_DOOR.get(),
-                TDItems.DARK_OAK_TRANSIT_GATE.get(),
+        ///         TDItems.DARK_OAK_TRANSIT_GATE.get(),
                 TDItems.DARK_OAK_PET_DOOR.get(),
 
                 TDItems.MANGROVE_DOOR.get(),
                 TDItems.MANGROVE_INDISCRETE_DOOR.get(),
                 TDItems.MANGROVE_TRANSIT_DOOR.get(),
-                TDItems.MANGROVE_TRANSIT_GATE.get(),
+        ///        TDItems.MANGROVE_TRANSIT_GATE.get(),
                 TDItems.MANGROVE_PET_DOOR.get(),
 
                 TDItems.CHERRY_DISCRETE_DOOR.get(),
                 TDItems.CHERRY_INDISCRETE_DOOR.get(),
                 TDItems.CHERRY_TRANSIT_DOOR.get(),
-                TDItems.CHERRY_TRANSIT_GATE.get(),
+        ///        TDItems.CHERRY_TRANSIT_GATE.get(),
                 TDItems.CHERRY_PET_DOOR.get(),
 
                 TDItems.BAMBOO_DISCRETE_DOOR.get(),
                 TDItems.BAMBOO_INDISCRETE_DOOR.get(),
                 TDItems.BAMBOO_TRANSIT_DOOR.get(),
-                TDItems.BAMBOO_TRANSIT_GATE.get(),
+        ///        TDItems.BAMBOO_TRANSIT_GATE.get(),
                 TDItems.BAMBOO_PET_DOOR.get(),
 
                 TDItems.CRIMSON_DOOR.get(),
                 TDItems.CRIMSON_INDISCRETE_DOOR.get(),
                 TDItems.CRIMSON_TRANSIT_DOOR.get(),
-                TDItems.CRIMSON_TRANSIT_GATE.get(),
+        ///        TDItems.CRIMSON_TRANSIT_GATE.get(),
                 TDItems.CRIMSON_PET_DOOR.get(),
 
                 TDItems.WARPED_DOOR.get(),
                 TDItems.WARPED_INDISCRETE_DOOR.get(),
                 TDItems.WARPED_TRANSIT_DOOR.get(),
-                TDItems.WARPED_TRANSIT_GATE.get(),
+        ///        TDItems.WARPED_TRANSIT_GATE.get(),
                 TDItems.WARPED_PET_DOOR.get()
         );
         takeAll(items, spriteBlockItems.toArray(new Item[0])).forEach(item -> withExistingParent(itemName(item), GENERATED).texture("layer0", resourceItem(itemName(item))));

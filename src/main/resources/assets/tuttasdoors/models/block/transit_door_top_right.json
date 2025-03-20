@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "#extra",
 		"door": "tuttasdoors:block/transit_door/oak_door_top",
-		"extra": "block/oak_door_top"
+		"extra": "block/oak_door_top",
+		"particle": "#extra"
 	},
 	"elements": [
 		{

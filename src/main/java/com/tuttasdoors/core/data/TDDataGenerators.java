@@ -1,6 +1,9 @@
 package com.tuttasdoors.core.data;
 
 import com.tuttasdoors.TuttasDoors;
+import com.tuttasdoors.core.data.recipes.TDRecipes;
+import com.tuttasdoors.core.data.tags.TDBlockTags;
+import com.tuttasdoors.core.data.tags.TDItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
@@ -29,6 +32,12 @@ public class TDDataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
         generator.addProvider(event.includeClient(), new TDLang(output));
+
+        TDBlockTags blockTags = new TDBlockTags(output, lookupProvider, helper);
+        generator.addProvider(event.includeServer(), blockTags);
+        generator.addProvider(event.includeServer(), new TDItemTags(output, lookupProvider, blockTags.contentsGetter(), helper));
+
+        generator.addProvider(event.includeServer(), new TDRecipes(output, lookupProvider));
 
         generator.addProvider(true, new DatapackBuiltinEntriesProvider(
                 output,

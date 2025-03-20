@@ -1,8 +1,0 @@
-{
-  "parent": "tuttasdoors:block/transit_door_bottom_right_open",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "door": "tuttasdoors:block/transit_door/acacia_door_bottom",
-    "extra": "minecraft:block/acacia_door_bottom"
-  }
-}
