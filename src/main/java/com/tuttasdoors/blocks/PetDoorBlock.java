@@ -1,7 +1,6 @@
 package com.tuttasdoors.blocks;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -13,9 +12,9 @@ import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -28,10 +27,10 @@ public class PetDoorBlock extends TrapDoorBlock {
     protected static final VoxelShape EAST_CLOSED_AABB =  Block.box(0.0F, 0.0F, 0.0F, 3.0F, 16.0F, 16.0F);
     protected static final VoxelShape WEST_CLOSED_AABB = Block.box(13.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
 
-    protected static final VoxelShape SOUTH_CLOSED_ENTITY_AABB =  Block.box(0.0F, 0.0F, 0.1F, 16.0F, 16.0F, 3.0F);
-    protected static final VoxelShape NORTH_CLOSED_ENTITY_AABB = Block.box(0.0F, 0.0F, 13.0F, 16.0F, 16.0F, 15.0F);
-    protected static final VoxelShape EAST_CLOSED_ENTITY_AABB =  Block.box(0.1F, 0.0F, 0.0F, 3.0F, 16.0F, 16.0F);
-    protected static final VoxelShape WEST_CLOSED_ENTITY_AABB = Block.box(13.0F, 0.0F, 0.0F, 15.0F, 16.0F, 16.0F);
+    protected static final VoxelShape SOUTH_CLOSED_ENTITY_AABB = Block.box(0.0F, 0.0F, 1.0F, 16.0F, 16.0F, 2.0F);
+    protected static final VoxelShape NORTH_CLOSED_ENTITY_AABB = Block.box(0.0F, 0.0F, 14.0F, 16.0F, 16.0F, 15.0F);
+    protected static final VoxelShape WEST_CLOSED_ENTITY_AABB = Block.box(14.0F, 0.0F, 0.0F, 15.0F, 16.0F, 16.0F);
+    protected static final VoxelShape EAST_CLOSED_ENTITY_AABB = Block.box(1.0F, 0.0F, 0.0F, 2.0F, 16.0F, 16.0F);
 
     protected static final VoxelShape BOTTOM_AABB = Block.box(0.0, 0.0, 0.0, 16.0, 3.0, 16.0);
     protected static final VoxelShape TOP_AABB = Block.box(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
@@ -83,19 +82,8 @@ public class PetDoorBlock extends TrapDoorBlock {
         super.entityInside(state, level, pos, entity);
 
         if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-            Direction direction = state.getValue(FACING);
-            Vec3 entityPos = entity.position();
-            boolean shouldOpen = false;
-
-            switch (direction) {
-                case NORTH -> shouldOpen = entityPos.z > pos.getZ() + 0.5;
-                case SOUTH -> shouldOpen = entityPos.z < pos.getZ() + 0.5;
-                case WEST -> shouldOpen = entityPos.x > pos.getX() + 0.5;
-                case EAST -> shouldOpen = entityPos.x < pos.getX() + 0.5;
-            }
-
-            if (!state.getValue(OPEN) && shouldOpen) {
-                this.toggle(state, level, pos, entity instanceof Player player ? player : null);
+            if (!state.getValue(OPEN) && !entity.isCrouching()) {
+                this.setOpen(null, level, state, pos, true);
             }
 
             serverLevel.scheduleTick(pos, state.getBlock(), 20);
@@ -108,19 +96,21 @@ public class PetDoorBlock extends TrapDoorBlock {
             level.scheduleTick(pos, state.getBlock(), 20);
             return;
         }
-
-        this.toggle(state, level, pos, null);
+        this.setOpen(null, level, state, pos, false);
     }
 
-    private void toggle(BlockState state, Level level, BlockPos pos, @Nullable Player player) {
-        BlockState newState = state.cycle(OPEN);
-        level.setBlock(pos, newState, 2);
+    public void setOpen(@Nullable Entity entity, Level level, BlockState state, BlockPos pos, boolean open) {
+        if (state.is(this) && state.getValue(OPEN) != open) {
+            BlockState newState = state.setValue(OPEN, open);
+            level.setBlock(pos, newState, 10);
 
-        if (newState.getValue(WATERLOGGED)) {
-            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+            if (newState.getValue(WATERLOGGED)) {
+                level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+            }
+
+            this.playSound((Player) entity, level, pos, open);
+            level.gameEvent(entity, open ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
         }
-
-        this.playSound(player, level, pos, newState.getValue(OPEN));
     }
 
     private static AABB getBoundingBox(BlockPos pos) {

@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +18,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
+
 public class TransitDoorBlock extends DoorBlock {
 
     protected static final VoxelShape SOUTH_AABB = Block.box(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 3.0F);
@@ -24,10 +27,10 @@ public class TransitDoorBlock extends DoorBlock {
     protected static final VoxelShape WEST_AABB = Block.box(13.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
     protected static final VoxelShape EAST_AABB = Block.box(0.0F, 0.0F, 0.0F, 3.0F, 16.0F, 16.0F);
 
-    protected static final VoxelShape SOUTH_ENTITY_AABB = Block.box(0.0F, 0.0F, 0.1F, 16.0F, 16.0F, 3.0F);
-    protected static final VoxelShape NORTH_ENTITY_AABB = Block.box(0.0F, 0.0F, 13.0F, 16.0F, 16.0F, 15.0F);
-    protected static final VoxelShape WEST_ENTITY_AABB = Block.box(13.0F, 0.0F, 0.0F, 15.0F, 16.0F, 16.0F);
-    protected static final VoxelShape EAST_ENTITY_AABB = Block.box(0.1F, 0.0F, 0.0F, 3.0F, 16.0F, 16.0F);
+    protected static final VoxelShape SOUTH_ENTITY_AABB = Block.box(0.0F, 0.0F, 1.0F, 16.0F, 16.0F, 2.0F);
+    protected static final VoxelShape NORTH_ENTITY_AABB = Block.box(0.0F, 0.0F, 14.0F, 16.0F, 16.0F, 15.0F);
+    protected static final VoxelShape WEST_ENTITY_AABB = Block.box(14.0F, 0.0F, 0.0F, 15.0F, 16.0F, 16.0F);
+    protected static final VoxelShape EAST_ENTITY_AABB = Block.box(1.0F, 0.0F, 0.0F, 2.0F, 16.0F, 16.0F);
 
     public TransitDoorBlock(BlockSetType type, Properties properties) {
         super(type, properties);
@@ -67,32 +70,53 @@ public class TransitDoorBlock extends DoorBlock {
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        super.entityInside(state, level, pos, entity);
-
         if (!level.isClientSide) {
-            if (level instanceof ServerLevel serverLevel) {Direction direction = state.getValue(FACING);
-                Vec3 entityPos = entity.position();
-                boolean shouldOpen = false;
+            level.scheduleTick(pos, this, 1);
+        }
+    }
 
-                switch (direction) {
-                    case NORTH -> shouldOpen = entityPos.z > pos.getZ() + 0.5;
-                    case SOUTH -> shouldOpen = entityPos.z < pos.getZ() + 0.5;
-                    case WEST -> shouldOpen = entityPos.x > pos.getX() + 0.5;
-                    case EAST -> shouldOpen = entityPos.x < pos.getX() + 0.5;
-                }
+    private void handleEntityLogic(BlockState state, ServerLevel level, BlockPos pos) {
+        boolean open = state.getValue(OPEN);
 
-                if (!state.getValue(OPEN) && shouldOpen  && !entity.isCrouching()) {
-                    this.setOpen(null, level, state, pos, true);
-                }
+        List<Entity> entities = level.getEntitiesOfClass(Entity.class, getBoundingBox(pos));
 
-                serverLevel.scheduleTick(pos, this, 20);
+        for (Entity entity : entities) {
+            if (entity.isCrouching()) continue;
+
+            boolean hasPlayer = entity instanceof Player ||
+                    entity.getPassengers().stream().anyMatch(p -> p instanceof Player);
+
+            if (!hasPlayer) continue;
+
+            Direction facing = state.getValue(FACING);
+            DoorHingeSide hinge = state.getValue(HINGE);
+
+            Direction hingeSide = (hinge == DoorHingeSide.RIGHT)
+                    ? facing.getClockWise()
+                    : facing.getCounterClockWise();
+
+            Vec3 entityPos = entity.position();
+            double dx = entityPos.x - (pos.getX() + 0.5);
+            double dz = entityPos.z - (pos.getZ() + 0.5);
+
+            boolean isOnHingeSide = switch (hingeSide.getAxis()) {
+                case X -> hingeSide.getStepX() > 0 ? dx > 0 : dx < 0;
+                case Z -> hingeSide.getStepZ() > 0 ? dz > 0 : dz < 0;
+                default -> false;
+            };
+
+            if (isOnHingeSide == open) {
+                this.setOpen(null, level, state, pos, !open);
             }
+
+            break;
         }
     }
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!level.getEntitiesOfClass(Entity.class, getBoundingBox(pos)).isEmpty()) {
+            handleEntityLogic(state, level, pos);
             level.scheduleTick(pos, this, 20);
             return;
         }
