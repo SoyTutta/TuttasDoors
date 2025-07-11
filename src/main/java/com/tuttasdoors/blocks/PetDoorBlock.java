@@ -35,6 +35,9 @@ public class PetDoorBlock extends TrapDoorBlock {
     protected static final VoxelShape BOTTOM_AABB = Block.box(0.0, 0.0, 0.0, 16.0, 3.0, 16.0);
     protected static final VoxelShape TOP_AABB = Block.box(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
 
+    protected static final VoxelShape BOTTOM_AABB_ENTITY = Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
+    protected static final VoxelShape TOP_AABB_ENTITY = Block.box(0.0, 15.0, 0.0, 16.0, 16.0, 16.0);
+
     public PetDoorBlock(BlockSetType type, Properties properties) {
         super(type, properties);
     }
@@ -61,7 +64,7 @@ public class PetDoorBlock extends TrapDoorBlock {
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (state.getValue(OPEN)) {
-            return state.getValue(HALF) == Half.TOP ? TOP_AABB : BOTTOM_AABB;
+            return state.getValue(HALF) == Half.TOP ? TOP_AABB_ENTITY : BOTTOM_AABB_ENTITY;
         } else {
             switch (state.getValue(FACING)) {
                 case NORTH:
