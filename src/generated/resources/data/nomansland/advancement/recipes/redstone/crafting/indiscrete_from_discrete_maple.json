@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nomansland:maple_door": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nomansland:maple_door"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "nomansland:crafting/indiscrete_from_discrete_maple"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_nomansland:maple_door"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "nomansland:crafting/indiscrete_from_discrete_maple"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft:birch_door": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:birch_door"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tuttasdoors:crafting/indiscrete_from_discrete_birch"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minecraft:birch_door"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tuttasdoors:crafting/indiscrete_from_discrete_birch"
+    ]
+  }
+}

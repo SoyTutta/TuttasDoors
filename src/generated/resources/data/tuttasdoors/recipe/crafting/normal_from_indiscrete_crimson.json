@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "alt_wooden_doors",
+  "ingredients": [
+    {
+      "item": "minecraft:crimson_planks"
+    },
+    {
+      "item": "tuttasdoors:crimson_indiscrete_door"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tuttasdoors:crimson_door"
+  }
+}

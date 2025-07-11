@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "alt_wooden_discrete_doors",
+  "ingredients": [
+    {
+      "item": "nomansland:walnut_planks"
+    },
+    {
+      "item": "nomansland:walnut_door"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "nomansland:walnut_discrete_door"
+  }
+}

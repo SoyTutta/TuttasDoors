@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "alt_wooden_doors",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "nomansland:pine_discrete_door"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "nomansland:pine_door"
+  }
+}

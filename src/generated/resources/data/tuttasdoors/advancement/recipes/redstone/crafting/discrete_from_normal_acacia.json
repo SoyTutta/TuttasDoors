@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tuttasdoors:crafting/discrete_from_normal_acacia"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tuttasdoors:acacia_door": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tuttasdoors:acacia_door"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tuttasdoors:acacia_door"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tuttasdoors:crafting/discrete_from_normal_acacia"
+    ]
+  }
+}

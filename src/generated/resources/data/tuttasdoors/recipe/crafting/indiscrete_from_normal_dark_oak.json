@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "alt_wooden_indiscrete_doors",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "tuttasdoors:dark_oak_door"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tuttasdoors:dark_oak_indiscrete_door"
+  }
+}

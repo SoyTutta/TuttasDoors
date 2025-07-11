@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "alt_wooden_indiscrete_doors",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:warped_door"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tuttasdoors:warped_indiscrete_door"
+  }
+}

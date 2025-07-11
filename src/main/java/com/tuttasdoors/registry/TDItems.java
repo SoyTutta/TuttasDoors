@@ -123,41 +123,6 @@ public class TDItems {
     );
 
 
-///    public static final Supplier<Item> OAK_TRANSIT_GATE = ITEMS.register("oak_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.OAK_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> SPRUCE_TRANSIT_GATE = ITEMS.register("spruce_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.SPRUCE_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> BIRCH_TRANSIT_GATE = ITEMS.register("birch_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.BIRCH_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> JUNGLE_TRANSIT_GATE = ITEMS.register("jungle_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.JUNGLE_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> ACACIA_TRANSIT_GATE = ITEMS.register("acacia_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.ACACIA_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> DARK_OAK_TRANSIT_GATE = ITEMS.register("dark_oak_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.DARK_OAK_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> MANGROVE_TRANSIT_GATE = ITEMS.register("mangrove_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.MANGROVE_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> CHERRY_TRANSIT_GATE = ITEMS.register("cherry_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.CHERRY_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> BAMBOO_TRANSIT_GATE = ITEMS.register("bamboo_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.BAMBOO_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> CRIMSON_TRANSIT_GATE = ITEMS.register("crimson_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.CRIMSON_TRANSIT_GATE.get(), basicItem())
-///    );
-///    public static final Supplier<Item> WARPED_TRANSIT_GATE = ITEMS.register("warped_transit_gate", ()  ->
-///            new BlockItem(TDBlocks.WARPED_TRANSIT_GATE.get(), basicItem())
-///    );
-
-
     public static final Supplier<Item> OAK_PET_DOOR = ITEMS.register("oak_pet_door", ()  ->
             new BlockItem(TDBlocks.OAK_PET_DOOR.get(), basicItem())
     );

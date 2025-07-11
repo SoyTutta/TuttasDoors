@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "alt_wooden_doors",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_planks"
+    },
+    {
+      "item": "tuttasdoors:spruce_indiscrete_door"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tuttasdoors:spruce_door"
+  }
+}

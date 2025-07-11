@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nomansland:willow_discrete_door": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nomansland:willow_discrete_door"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "nomansland:crafting/normal_from_discrete_willow"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_nomansland:willow_discrete_door"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "nomansland:crafting/normal_from_discrete_willow"
+    ]
+  }
+}

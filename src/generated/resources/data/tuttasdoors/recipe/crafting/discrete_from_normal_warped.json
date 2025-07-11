@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "alt_wooden_discrete_doors",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_planks"
+    },
+    {
+      "item": "tuttasdoors:warped_door"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:warped_door"
+  }
+}
