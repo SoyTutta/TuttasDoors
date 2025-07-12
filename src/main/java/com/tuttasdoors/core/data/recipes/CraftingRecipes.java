@@ -53,31 +53,6 @@ public class CraftingRecipes {
             registerConversionRecipes(output, wood);
         }
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, (getItemLike("nomansland:pine_discrete_door")), 3)
-                .pattern("##")
-                .pattern("##")
-                .pattern("##")
-                .define('#', (getItemLike("nomansland:pine_planks")))
-                .unlockedBy("has_pine_planks", InventoryChangeTrigger.TriggerInstance.hasItems((getItemLike("nomansland:pine_planks"))))
-                .group("wooden_discrete_doors")
-                .save(output, "nomansland:wood/pine/pine_door");
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, (getItemLike("nomansland:willow_discrete_door")), 3)
-                .pattern("##")
-                .pattern("##")
-                .pattern("##")
-                .define('#', (getItemLike("nomansland:willow_planks")))
-                .unlockedBy("has_willow_planks", InventoryChangeTrigger.TriggerInstance.hasItems((getItemLike("nomansland:willow_planks"))))
-                .group("wooden_discrete_doors")
-                .save(output, "nomansland:wood/willow/willow_door");
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, (getItemLike("nomansland:walnut_discrete_door")), 3)
-                .pattern("##")
-                .pattern("##")
-                .pattern("##")
-                .define('#', (getItemLike("nomansland:walnut_planks")))
-                .unlockedBy("has_walnut_planks", InventoryChangeTrigger.TriggerInstance.hasItems((getItemLike("nomansland:walnut_planks"))))
-                .group("wooden_discrete_doors")
-                .save(output, "nomansland:wood/walnut/walnut_door");
-
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, (TDItems.IRON_BARS_SLIDING_DOOR.get()), 3)
                 .pattern("##")
                 .pattern("##")

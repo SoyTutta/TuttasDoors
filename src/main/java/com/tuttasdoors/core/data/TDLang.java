@@ -93,6 +93,7 @@ public class TDLang extends LanguageProvider {
         this.add("block.nomansland.walnut_transit_door", "Walnut Transit Door");
         this.add("block.nomansland.walnut_pet_door", "Walnut Pet Door");
 
+        this.add("block.nomansland.maple_door", "Maple Discreet Door");
         this.add("block.nomansland.maple_normal_door", "Maple Door");
         this.add("block.nomansland.maple_indiscrete_door", "Maple Indiscreet Door");
         this.add("block.nomansland.maple_transit_door", "Maple Transit Door");
@@ -113,6 +114,7 @@ public class TDLang extends LanguageProvider {
         this.add("item.nomansland.walnut_transit_door", "Walnut Transit Door");
         this.add("item.nomansland.walnut_pet_door", "Walnut Pet Door");
 
+        this.add("item.nomansland.maple_door", "Maple Discreet Door");
         this.add("item.nomansland.maple_normal_door", "Maple Door");
         this.add("item.nomansland.maple_indiscrete_door", "Maple Indiscreet Door");
         this.add("item.nomansland.maple_transit_door", "Maple Transit Door");
