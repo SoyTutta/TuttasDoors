@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-11T12:54:17.7242033	Loot Tables
+// 1.21.1	2025-07-11T22:35:11.1357281	Loot Tables
 1817e924509d3e1a3954c7472060b0e05271d7ca data/nomansland/loot_table/blocks/maple_indiscrete_door.json
 cd9370529dd609266c4c22ec6700b8eaa76bb7e4 data/nomansland/loot_table/blocks/maple_normal_door.json
 125be4ecb2bc47b26899db345c828c9aa7e247be data/nomansland/loot_table/blocks/maple_pet_door.json
@@ -39,6 +39,7 @@ b3aeb128cf57599dfb1cc608e9a98fc7d0eea267 data/tuttasdoors/loot_table/blocks/crim
 6d89876f8ec7452923a0d300ee797d913cfacf7e data/tuttasdoors/loot_table/blocks/dark_oak_indiscrete_door.json
 33bf29960e0042865dfc6b88fb11f6729559aa10 data/tuttasdoors/loot_table/blocks/dark_oak_pet_door.json
 b85f3ba148405ffcc4c89a7f244f55490a06da0d data/tuttasdoors/loot_table/blocks/dark_oak_transit_door.json
+4bf8bc693a558ce0f60a82384d89dc03f3e503a7 data/tuttasdoors/loot_table/blocks/iron_bars_sliding_door.json
 d721cabf36f25f9d69aa2d53b49c88cb21fd4dd4 data/tuttasdoors/loot_table/blocks/jungle_discrete_door.json
 858213dbc085b13b597d8442c629e17d01a258b2 data/tuttasdoors/loot_table/blocks/jungle_indiscrete_door.json
 7004ec3ac2e29641fc2ca29e6822093e49a128cd data/tuttasdoors/loot_table/blocks/jungle_pet_door.json

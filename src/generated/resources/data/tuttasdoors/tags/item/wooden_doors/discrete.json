@@ -10,6 +10,9 @@
     "tuttasdoors:cherry_discrete_door",
     "tuttasdoors:bamboo_discrete_door",
     "minecraft:crimson_door",
-    "minecraft:warped_door"
+    "minecraft:warped_door",
+    "nomansland:pine_discrete_door",
+    "nomansland:willow_discrete_door",
+    "nomansland:walnut_discrete_door"
   ]
 }

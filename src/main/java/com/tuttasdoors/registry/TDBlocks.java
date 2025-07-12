@@ -2,6 +2,7 @@ package com.tuttasdoors.registry;
 
 import com.tuttasdoors.TuttasDoors;
 import com.tuttasdoors.blocks.PetDoorBlock;
+import com.tuttasdoors.blocks.SlidingDoorBlock;
 import com.tuttasdoors.blocks.TransitDoorBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.*;
@@ -108,5 +109,8 @@ public class TDBlocks {
             () -> new PetDoorBlock(BlockSetType.CRIMSON, ofFullCopy(Blocks.CRIMSON_DOOR)));
     public static final Supplier<Block> WARPED_PET_DOOR = BLOCKS.register("warped_pet_door",
             () -> new PetDoorBlock(BlockSetType.WARPED, ofFullCopy(Blocks.WARPED_DOOR)));
+
+    public static final Supplier<Block> IRON_BARS_SLIDING_DOOR = BLOCKS.register("iron_bars_sliding_door",
+            () -> new SlidingDoorBlock(BlockSetType.IRON, ofFullCopy(Blocks.IRON_BARS)));
 }
 

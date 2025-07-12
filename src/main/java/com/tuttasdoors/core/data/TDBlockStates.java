@@ -2,12 +2,16 @@ package com.tuttasdoors.core.data;
 
 import com.tuttasdoors.TuttasDoors;
 import com.tuttasdoors.blocks.PetDoorBlock;
+import com.tuttasdoors.blocks.SlidingDoorBlock;
 import com.tuttasdoors.registry.TDBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoorHingeSide;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -69,6 +73,8 @@ public class TDBlockStates extends BlockStateProvider {
         registerPetDoor(TDBlocks.BAMBOO_PET_DOOR, "pet_door/bamboo_door");
         registerPetDoor(TDBlocks.CRIMSON_PET_DOOR, "pet_door/crimson_door");
         registerPetDoor(TDBlocks.WARPED_PET_DOOR, "pet_door/warped_door");
+
+        registerSlidingDoor(TDBlocks.IRON_BARS_SLIDING_DOOR, "sliding_door/iron_bars_door");
     }
 
     private void registerDoor(Supplier<Block> blockSupplier, String texturePath) {
@@ -124,43 +130,162 @@ public class TDBlockStates extends BlockStateProvider {
     }
 
     public BlockModelBuilder transitDoorBottomLeft(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_bottom_left", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_bottom_left", bottom, top, extraBottom, extraTop);
     }
 
     public BlockModelBuilder transitDoorBottomLeftOpen(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_bottom_left_open", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_bottom_left_open", bottom, top, extraBottom, extraTop);
     }
 
     public BlockModelBuilder transitDoorBottomRight(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_bottom_right", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_bottom_right", bottom, top, extraBottom, extraTop);
     }
 
     public BlockModelBuilder transitDoorBottomRightOpen(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_bottom_right_open", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_bottom_right_open", bottom, top, extraBottom, extraTop);
     }
 
     public BlockModelBuilder transitDoorTopLeft(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_top_left", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_top_left", bottom, top, extraBottom, extraTop);
     }
 
     public BlockModelBuilder transitDoorTopLeftOpen(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_top_left_open", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_top_left_open", bottom, top, extraBottom, extraTop);
     }
 
     public BlockModelBuilder transitDoorTopRight(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_top_right", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_top_right", bottom, top, extraBottom, extraTop);
     }
 
     public BlockModelBuilder transitDoorTopRightOpen(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
-        return this.door(name, "transit_door_top_right_open", bottom, top, extraBottom, extraTop);
+        return this.transitDoor(name, "transit_door_top_right_open", bottom, top, extraBottom, extraTop);
     }
 
-    private BlockModelBuilder door(String name, String model, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
+    private BlockModelBuilder transitDoor(String name, String model, ResourceLocation bottom, ResourceLocation top, ResourceLocation extraBottom, ResourceLocation extraTop) {
         boolean isTop = name.contains("top");
 
         return this.models().withExistingParent(name, ResourceLocation.fromNamespaceAndPath(TuttasDoors.MODID, "block/" + model))
                 .texture("door", isTop ? top : bottom)
                 .texture("extra", isTop ? extraTop : extraBottom);
+    }
+
+    private void registerSlidingDoor(Supplier<Block> blockSupplier, String texturePath) {
+        slidingDoorBlockWithRenderType(
+                (DoorBlock) blockSupplier.get(),
+                resourceBlock(texturePath + "_bottom"),
+                resourceBlock(texturePath + "_top"),
+                "cutout"
+        );
+    }
+    public void slidingDoorBlockWithRenderType(DoorBlock block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+        this.slidingDoorBlockInternalWithRenderType(block, this.key(block).toString(), bottom, top, ResourceLocation.tryParse(renderType));
+    }
+
+    private void slidingDoorBlockInternalWithRenderType(DoorBlock block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation renderType) {
+        ModelFile bottomLeft         = this.slidingDoorBottomLeft(baseName + "_bottom_left",               bottom, top).renderType(renderType);
+        ModelFile bottomLeftOpen     = this.slidingDoorBottomLeftOpen(baseName + "_bottom_left_open",      bottom, top).renderType(renderType);
+        ModelFile bottomLeftTrueOpen = this.slidingDoorBottomLeftTrueOpen(baseName + "_bottom_left_true_open", bottom, top).renderType(renderType);
+
+        ModelFile bottomRight         = this.slidingDoorBottomRight(baseName + "_bottom_right",               bottom, top).renderType(renderType);
+        ModelFile bottomRightOpen     = this.slidingDoorBottomRightOpen(baseName + "_bottom_right_open",      bottom, top).renderType(renderType);
+        ModelFile bottomRightTrueOpen = this.slidingDoorBottomRightTrueOpen(baseName + "_bottom_right_true_open", bottom, top).renderType(renderType);
+
+        ModelFile topLeft         = this.slidingDoorTopLeft(baseName + "_top_left",               bottom, top).renderType(renderType);
+        ModelFile topLeftOpen     = this.slidingDoorTopLeftOpen(baseName + "_top_left_open",      bottom, top).renderType(renderType);
+        ModelFile topLeftTrueOpen = this.slidingDoorTopLeftTrueOpen(baseName + "_top_left_true_open", bottom, top).renderType(renderType);
+
+        ModelFile topRight         = this.slidingDoorTopRight(baseName + "_top_right",               bottom, top).renderType(renderType);
+        ModelFile topRightOpen     = this.slidingDoorTopRightOpen(baseName + "_top_right_open",      bottom, top).renderType(renderType);
+        ModelFile topRightTrueOpen = this.slidingDoorTopRightTrueOpen(baseName + "_top_right_true_open", bottom, top).renderType(renderType);
+
+        this.slidingDoorBlock(block, bottomLeft, bottomLeftOpen, bottomLeftTrueOpen, bottomRight, bottomRightOpen, bottomRightTrueOpen, topLeft, topLeftOpen, topLeftTrueOpen, topRight, topRightOpen, topRightTrueOpen);
+    }
+
+    public BlockModelBuilder slidingDoorBottomLeft(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_bottom_left", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorBottomLeftOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_bottom_left_open", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorBottomLeftTrueOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_bottom_left_true_open", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorBottomRight(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_bottom_right", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorBottomRightOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_bottom_right_open", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorBottomRightTrueOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_bottom_right_true_open", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorTopLeft(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_top_left", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorTopLeftOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_top_left_open", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorTopLeftTrueOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_top_left_true_open", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorTopRight(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_top_right", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorTopRightOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_top_right_open", bottom, top);
+    }
+
+    public BlockModelBuilder slidingDoorTopRightTrueOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+        return this.door(name, "sliding_door_top_right_true_open", bottom, top);
+    }
+
+    private BlockModelBuilder door(String name, String model, ResourceLocation bottom, ResourceLocation top) {
+        boolean isTop = name.contains("top");
+        return this.models().withExistingParent(name, ResourceLocation.fromNamespaceAndPath(TuttasDoors.MODID, "block/" + model))
+                .texture("door", isTop ? top : bottom);
+    }
+
+    protected void slidingDoorBlock(DoorBlock block, ModelFile bottomLeftClosed, ModelFile bottomLeftOpen, ModelFile bottomLeftTrueOpen, ModelFile bottomRightClosed, ModelFile bottomRightOpen, ModelFile bottomRightTrueOpen, ModelFile topLeftClosed, ModelFile topLeftOpen, ModelFile topLeftTrueOpen, ModelFile topRightClosed, ModelFile topRightOpen, ModelFile topRightTrueOpen) {
+        this.getVariantBuilder(block).forAllStates(state -> {
+            Direction       facing   = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            boolean         open     = state.getValue(BlockStateProperties.OPEN);
+            boolean         inWall   = state.getValue(SlidingDoorBlock.IN_WALL);
+            DoubleBlockHalf half     = state.getValue(DoorBlock.HALF);
+            DoorHingeSide   hinge    = state.getValue(BlockStateProperties.DOOR_HINGE);
+            int             yRot     = (int) facing.toYRot();
+
+            ModelFile selectedModel = half == DoubleBlockHalf.LOWER
+                    ? hinge == DoorHingeSide.LEFT
+                    ? open
+                    ? (inWall ? bottomLeftOpen  : bottomLeftTrueOpen)
+                    : bottomLeftClosed
+                    : open
+                    ? (inWall ? bottomRightOpen : bottomRightTrueOpen)
+                    : bottomRightClosed
+                    : hinge == DoorHingeSide.LEFT
+                    ? open
+                    ? (inWall ? topLeftOpen     : topLeftTrueOpen)
+                    : topLeftClosed
+                    : open
+                    ? (inWall ? topRightOpen    : topRightTrueOpen)
+                    : topRightClosed;
+
+            return ConfiguredModel.builder()
+                    .modelFile(selectedModel)
+                    .rotationY(yRot)
+                    .uvLock(true)
+                    .build();
+        });
     }
 
     private void registerPetDoor(Supplier<Block> blockSupplier, String texturePath) {

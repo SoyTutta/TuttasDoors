@@ -18,8 +18,6 @@ public class TDTags
 
     public static final TagKey<Block> WOODEN_TRANSIT_DOORS = modBlockTag("wooden_doors/transit");
 
-    /// public static final TagKey<Block> WOODEN_TRANSIT_GATES = modBlockTag("wooden_doors/transit_gates");
-
     public static final TagKey<Block> WOODEN_PET_DOORS = modBlockTag("wooden_doors/pet");
 
     public static final TagKey<Item> WOODEN_DISCRETE_DOORS_ITEMS = modItemTag("wooden_doors/discrete");
@@ -30,9 +28,9 @@ public class TDTags
 
     public static final TagKey<Item> WOODEN_TRANSIT_DOORS_ITEMS = modItemTag("wooden_doors/transit");
 
-    ///  public static final TagKey<Item> WOODEN_TRANSIT_GATES_ITEMS = modItemTag("wooden_doors/transit_gates");
-
     public static final TagKey<Item> WOODEN_PET_DOORS_ITEMS = modItemTag("wooden_doors/pet");
+
+    public static final TagKey<Block> POSSIBLE_SLIDING = modBlockTag("wooden_doors/possible_sliding");
 
     private static TagKey<Item> modItemTag(String path) {
         return ItemTags.create(ResourceLocation.fromNamespaceAndPath(TuttasDoors.MODID, path));

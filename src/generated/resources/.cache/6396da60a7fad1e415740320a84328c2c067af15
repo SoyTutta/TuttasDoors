@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-11T04:25:28.8963589	Item Models: tuttasdoors
+// 1.21.1	2025-07-11T22:35:11.1297373	Item Models: tuttasdoors
 151f8323903eb2fda62803b17ff1a60f810df3a3 assets/tuttasdoors/models/item/acacia_discrete_door.json
 c8b85fedec0ac38a9b51211d9ec027f992efbed1 assets/tuttasdoors/models/item/acacia_door.json
 33a3d39c17f530ff2cb3c94dce47e1d762edf632 assets/tuttasdoors/models/item/acacia_pet_door.json
@@ -23,6 +23,7 @@ bf366f0724cdd643e83595a4470f2abf87d74fc5 assets/tuttasdoors/models/item/crimson_
 1608d250601dc9550bc73cb1fd1b8e2a32e05003 assets/tuttasdoors/models/item/dark_oak_indiscrete_door.json
 152af96ae060620711aa28ee7ce204bcb8a2089b assets/tuttasdoors/models/item/dark_oak_pet_door.json
 d6d547c28089909c172a99eff84887cdfc699886 assets/tuttasdoors/models/item/dark_oak_transit_door.json
+7c54eec1e13adadc95caa0035606c6190905dcc7 assets/tuttasdoors/models/item/iron_bars_sliding_door.json
 3d437a2f5d00596ba10a5e24498e11051fc3921d assets/tuttasdoors/models/item/jungle_discrete_door.json
 b5861101a9539a40e7bcd3c68d611c7c8bff9629 assets/tuttasdoors/models/item/jungle_indiscrete_door.json
 d8a3581d41a7b4ed1a368b3e68e22fb233a858f6 assets/tuttasdoors/models/item/jungle_pet_door.json

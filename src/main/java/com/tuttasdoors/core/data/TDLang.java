@@ -34,6 +34,8 @@ public class TDLang extends LanguageProvider {
             if (addedKeys.add(descriptionId)) {
                 String name = descriptionId.replaceFirst("block.tuttasdoors.", "");
                 name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("Of", "of");
+                name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("Discrete", "Discreet");
+                name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("Indiscrete", "Indiscreet");
                 this.add(descriptionId, name);
             }
         });
@@ -48,6 +50,8 @@ public class TDLang extends LanguageProvider {
                 name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("Of", "of");
                 name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("And", "and");
                 name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("With", "with");
+                name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("Discrete", "Discreet");
+                name = toTitleCase(this.correctBlockItemName(name), "_").replaceAll("Indiscrete", "Indiscreet");
                 this.add(descriptionId, name);
             }
         });
@@ -57,12 +61,62 @@ public class TDLang extends LanguageProvider {
 
     private void addCustomTranslations() {
         this.add("tuttasdoors.itemGroup.main", "Tutta's doors");
-        this.add("block.minecraft.spruce_door", "Spruce Discrete Door");
-        this.add("block.minecraft.birch_door", "Birch Discrete Door");
-        this.add("block.minecraft.dark_oak_door", "Dark Oak Discrete Door");
-        this.add("block.minecraft.mangrove_door", "Mangrove Discrete Door");
-        this.add("block.minecraft.crimson_door", "Crimson Discrete Door");
-        this.add("block.minecraft.warped_door", "Warped Discrete Door");
+        this.add("block.minecraft.spruce_door", "Spruce Discreet Door");
+        this.add("block.minecraft.birch_door", "Birch Discreet Door");
+        this.add("block.minecraft.dark_oak_door", "Dark Oak Discreet Door");
+        this.add("block.minecraft.mangrove_door", "Mangrove Discreet Door");
+        this.add("block.minecraft.crimson_door", "Crimson Discreet Door");
+        this.add("block.minecraft.warped_door", "Warped Discreet Door");
+        this.add("block.minecraft.acacia_door", "Warped Indiscreet Door");
+
+        this.add("item.minecraft.spruce_door", "Spruce Discreet Door");
+        this.add("item.minecraft.birch_door", "Birch Discreet Door");
+        this.add("item.minecraft.dark_oak_door", "Dark Oak Discreet Door");
+        this.add("item.minecraft.mangrove_door", "Mangrove Discreet Door");
+        this.add("item.minecraft.crimson_door", "Crimson Discreet Door");
+        this.add("item.minecraft.warped_door", "Warped Discreet Door");
+        this.add("item.minecraft.acacia_door", "Acacia Indiscreet Door");
+
+        // No Mans Lands
+        this.add("block.nomansland.pine_discrete_door", "Pine Discreet Door");
+        this.add("block.nomansland.pine_indiscrete_door", "Pine Indiscreet Door");
+        this.add("block.nomansland.pine_transit_door", "Pine Transit Door");
+        this.add("block.nomansland.pine_pet_door", "Pine Pet Door");
+
+        this.add("block.nomansland.willow_discrete_door", "Willow Discreet Door");
+        this.add("block.nomansland.willow_indiscrete_door", "Willow Indiscreet Door");
+        this.add("block.nomansland.willow_transit_door", "Willow Transit Door");
+        this.add("block.nomansland.willow_pet_door", "Willow Pet Door");
+
+        this.add("block.nomansland.walnut_discrete_door", "Walnut Discreet Door");
+        this.add("block.nomansland.walnut_indiscrete_door", "Walnut Indiscreet Door");
+        this.add("block.nomansland.walnut_transit_door", "Walnut Transit Door");
+        this.add("block.nomansland.walnut_pet_door", "Walnut Pet Door");
+
+        this.add("block.nomansland.maple_normal_door", "Maple Door");
+        this.add("block.nomansland.maple_indiscrete_door", "Maple Indiscreet Door");
+        this.add("block.nomansland.maple_transit_door", "Maple Transit Door");
+        this.add("block.nomansland.maple_pet_door", "Maple Pet Door");
+
+        this.add("item.nomansland.pine_discrete_door", "Pine Discreet Door");
+        this.add("item.nomansland.pine_indiscrete_door", "Pine Indiscreet Door");
+        this.add("item.nomansland.pine_transit_door", "Pine Transit Door");
+        this.add("item.nomansland.pine_pet_door", "Pine Pet Door");
+
+        this.add("item.nomansland.willow_discrete_door", "Willow Discreet Door");
+        this.add("item.nomansland.willow_indiscrete_door", "Willow Indiscreet Door");
+        this.add("item.nomansland.willow_transit_door", "Willow Transit Door");
+        this.add("item.nomansland.willow_pet_door", "Willow Pet Door");
+
+        this.add("item.nomansland.walnut_discrete_door", "Walnut Discreet Door");
+        this.add("item.nomansland.walnut_indiscrete_door", "Walnut Indiscreet Door");
+        this.add("item.nomansland.walnut_transit_door", "Walnut Transit Door");
+        this.add("item.nomansland.walnut_pet_door", "Walnut Pet Door");
+
+        this.add("item.nomansland.maple_normal_door", "Maple Door");
+        this.add("item.nomansland.maple_indiscrete_door", "Maple Indiscreet Door");
+        this.add("item.nomansland.maple_transit_door", "Maple Transit Door");
+        this.add("item.nomansland.maple_pet_door", "Maple Pet Door");
     }
 
     @Override

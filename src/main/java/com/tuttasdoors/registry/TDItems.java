@@ -156,4 +156,8 @@ public class TDItems {
     public static final Supplier<Item> WARPED_PET_DOOR = ITEMS.register("warped_pet_door", ()  ->
             new BlockItem(TDBlocks.WARPED_PET_DOOR.get(), basicItem())
     );
+
+    public static final Supplier<Item> IRON_BARS_SLIDING_DOOR = ITEMS.register("iron_bars_sliding_door", ()  ->
+            new BlockItem(TDBlocks.IRON_BARS_SLIDING_DOOR.get(), basicItem())
+    );
 }

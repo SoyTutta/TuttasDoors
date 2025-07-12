@@ -10,6 +10,10 @@
     "tuttasdoors:cherry_transit_door",
     "tuttasdoors:bamboo_transit_door",
     "tuttasdoors:crimson_transit_door",
-    "tuttasdoors:warped_transit_door"
+    "tuttasdoors:warped_transit_door",
+    "nomansland:pine_transit_door",
+    "nomansland:willow_transit_door",
+    "nomansland:walnut_transit_door",
+    "nomansland:maple_transit_door"
   ]
 }

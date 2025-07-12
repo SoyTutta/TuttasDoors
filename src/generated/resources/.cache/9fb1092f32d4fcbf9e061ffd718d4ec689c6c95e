@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-11T04:45:05.4808387	Recipes
+// 1.21.1	2025-07-11T22:35:11.1432865	Recipes
 bc49fd62a26b59a203448857a00fef844cfdfcf4 data/nomansland/advancement/recipes/redstone/crafting/discrete_from_indiscrete_maple.json
 8779bdc70431ccedcbac40a54a93582a2e932309 data/nomansland/advancement/recipes/redstone/crafting/discrete_from_indiscrete_pine.json
 1eaea6f79d651577508af730c0512c111f6ed6da data/nomansland/advancement/recipes/redstone/crafting/discrete_from_indiscrete_walnut.json
@@ -153,6 +153,7 @@ a1f0ee5c2e7a2c3c87f29698a96a54c7b940f758 data/tuttasdoors/advancement/recipes/re
 dbac738cd9ed01bb8209daea89e4a708e954968c data/tuttasdoors/advancement/recipes/redstone/crafting/indiscrete_from_normal_oak.json
 e4afa90fabd3614a724c908442a1b4bab13e37c0 data/tuttasdoors/advancement/recipes/redstone/crafting/indiscrete_from_normal_spruce.json
 337a4e3fcda910cb530f5a5f9a9ad198b603b7fc data/tuttasdoors/advancement/recipes/redstone/crafting/indiscrete_from_normal_warped.json
+5a02c8a6e3568af335c3ddc28ce08f7e06e2a776 data/tuttasdoors/advancement/recipes/redstone/crafting/iron_bars_sliding_door.json
 736f9ca5738522cda68a4ba6431a1ccdbc15516b data/tuttasdoors/advancement/recipes/redstone/crafting/jungle_door.json
 2cac90d7cb82fe34db64081c8b4983ce16581db8 data/tuttasdoors/advancement/recipes/redstone/crafting/jungle_indiscrete_door.json
 4a747bf059eb5755543ed0e5e017481024fb8827 data/tuttasdoors/advancement/recipes/redstone/crafting/jungle_pet_door.json
@@ -263,6 +264,7 @@ a9fdba4e50a6b6bf98e74a77523689427d6c4b68 data/tuttasdoors/recipe/crafting/indisc
 85975e5287256c0424af0b60da55b9d3c2849c71 data/tuttasdoors/recipe/crafting/indiscrete_from_normal_oak.json
 3fd3071013f4dc0414eb00641a276cf664a5ed7e data/tuttasdoors/recipe/crafting/indiscrete_from_normal_spruce.json
 2c0df1f1e380d10328ae1c31f4145287441705e6 data/tuttasdoors/recipe/crafting/indiscrete_from_normal_warped.json
+03df9ca6f864b3e0271936a5ac0ae6da73ed6ad4 data/tuttasdoors/recipe/crafting/iron_bars_sliding_door.json
 8e5e11e9c728bcd03e504d578dc4b61912dfab4e data/tuttasdoors/recipe/crafting/jungle_door.json
 681150621d88d90b3d332dc1441c31d3d78429cf data/tuttasdoors/recipe/crafting/jungle_indiscrete_door.json
 cd03bc1eeb215451c2210f86aeac6829887d0665 data/tuttasdoors/recipe/crafting/jungle_pet_door.json

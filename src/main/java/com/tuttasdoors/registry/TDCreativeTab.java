@@ -123,6 +123,8 @@ public class TDCreativeTab {
                                 }
                             }
                         }
+
+                        output.accept(TDItems.IRON_BARS_SLIDING_DOOR.get());
                     }
             ).build()
     );

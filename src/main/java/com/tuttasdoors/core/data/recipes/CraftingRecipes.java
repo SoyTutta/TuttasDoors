@@ -77,6 +77,15 @@ public class CraftingRecipes {
                 .unlockedBy("has_walnut_planks", InventoryChangeTrigger.TriggerInstance.hasItems((getItemLike("nomansland:walnut_planks"))))
                 .group("wooden_discrete_doors")
                 .save(output, "nomansland:wood/walnut/walnut_door");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, (TDItems.IRON_BARS_SLIDING_DOOR.get()), 3)
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .define('#', (Items.IRON_BARS))
+                .unlockedBy("has_iron_bars", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_BARS, Items.IRON_INGOT))
+                .group("sliding_doors")
+                .save(output, "tuttasdoors:crafting/iron_bars_sliding_door");
     }
 
     private static ItemLike getItemLike(Object obj) {
