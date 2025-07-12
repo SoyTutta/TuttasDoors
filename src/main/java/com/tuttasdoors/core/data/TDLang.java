@@ -67,7 +67,7 @@ public class TDLang extends LanguageProvider {
         this.add("block.minecraft.mangrove_door", "Mangrove Discreet Door");
         this.add("block.minecraft.crimson_door", "Crimson Discreet Door");
         this.add("block.minecraft.warped_door", "Warped Discreet Door");
-        this.add("block.minecraft.acacia_door", "Warped Indiscreet Door");
+        this.add("block.minecraft.acacia_door", "Acacia Indiscreet Door");
 
         this.add("item.minecraft.spruce_door", "Spruce Discreet Door");
         this.add("item.minecraft.birch_door", "Birch Discreet Door");
